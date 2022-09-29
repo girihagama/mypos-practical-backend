@@ -137,7 +137,7 @@ router.post('/invoiceDetail/delete', (req, res) => {
 router.post('/report/generate', (req, res) => {
   var data = req.body;
 
-  var query = `SELECT * FROM invoice_hed WHERE Invoice_Hed_Date BETWEEN '${data.fromDate} 00:00:00' AND '${data.toDate} 23:59:59'`;
+  var query = `SELECT * FROM invoice_hed WHERE Invoice_Hed_Date BETWEEN '${data.fromDate} 00:00:00' AND '${data.toDate} 23:59:59' ORDER BY Invoice_Hed_Date ASC`;
   db.query(query, function (error, results, fields) {
     if (error) {
       res.json({
@@ -145,7 +145,7 @@ router.post('/report/generate', (req, res) => {
         message: error.sqlMessage
       })
     } else {
-      res.json(results)
+      res.json(results);
     }
   });
 });
