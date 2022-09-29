@@ -133,4 +133,21 @@ router.post('/invoiceDetail/delete', (req, res) => {
   });
 });
 
+//Report API Endpoints
+router.post('/report/generate', (req, res) => {
+  var data = req.body;
+
+  var query = `SELECT * FROM invoice_hed WHERE Invoice_Hed_Date BETWEEN '${data.fromDate} 00:00:00' AND '${data.toDate} 23:59:59'`;
+  db.query(query, function (error, results, fields) {
+    if (error) {
+      res.json({
+        action: 0,
+        message: error.sqlMessage
+      })
+    } else {
+      res.json(results)
+    }
+  });
+});
+
 module.exports = router;
