@@ -64,7 +64,7 @@ router.post('/product/update', (req, res) => {
 router.post('/invoiceHed/create', (req, res) => {
   var data = req.body;
 
-  var query = `INSERT INTO invoice_hed (Invoice_Hed_id, Invoice_Hed_customer) VALUES ('${data.Invoice_Hed_id}', '${data.Invoice_Hed_customer}')`;
+  var query = `INSERT INTO invoice_hed (Invoice_Hed_id, Invoice_Hed_Amount, Invoice_Hed_customer) VALUES ('${data.Invoice_Hed_id}', '${data.Invoice_Hed_Amount}', '${data.Invoice_Hed_customer}')`;
   db.query(query, function (error, results, fields) {
     if (error) {
       res.json({
